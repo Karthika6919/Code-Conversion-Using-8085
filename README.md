@@ -21,9 +21,33 @@ To write 8085 microprocessor programs for converting:
 6.	Store the ASCII equivalent in memory location 4300H and 4301H.
 
 ## Program:
-
-
+```
+LDA 4200H
+MOV B,A
+ANI 0F0H
+RRC
+RRC
+RRC
+RRC
+CPI 0AH
+JC ADD30
+ADI 37H
+JMP STORE1
+ADD30: ADI 30H
+STORE1:STA 4300H
+MOV A,B
+ANI 0FH
+CPI 0AH
+JC ADD30L
+ADI 37H
+JMP STORE2
+ADD30L: ADI 30H
+STORE2: STA 4301H
+HLT
+```
 ## Output:
+<img width="1795" height="786" alt="image" src="https://github.com/user-attachments/assets/b60f14c4-2edf-4264-a2e4-39d22a196604" />
+<img width="1797" height="786" alt="image" src="https://github.com/user-attachments/assets/77b803e0-6ae5-489a-b61f-45ff5c983fd7" />
 
 
 ## Program 2: ASCII to Hexadecimal Conversion
@@ -37,11 +61,34 @@ To write 8085 microprocessor programs for converting:
 5.	Store the result in memory location 4300H.
 
 ## Program:
+```
+LDA 4200H
+CPI 3AH
+JC SUB30
+SUI 37H
+JMP STOREH
+SUB30: SUI 30H
 
-
+STOREH: MOV C, A
+LDA 4201H
+CPI 3AH
+JC SUB30L
+SUI 37H
+JMP STOREL
+SUB30L: SUI 30H
+STOREL: MOV B,A
+MOV A,C
+RLC 
+RLC
+RLC
+RLC
+ADD B
+STA 4300H
+HLT
+```
 ## Output:
-
-
+<img width="1767" height="789" alt="image" src="https://github.com/user-attachments/assets/10eb2c5a-1b02-4ba9-b2d7-3fe807efc0a2" />
+<img width="1814" height="783" alt="image" src="https://github.com/user-attachments/assets/5b706602-a8be-47f3-8ddf-f262a7eca2c3" />
 
 ## Result:
 
